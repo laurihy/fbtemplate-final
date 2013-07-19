@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>A Backlift "Hello World" App</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <!-- 
+        These curly braces "{" and "}" are Backlift template tags.
+        Check out config.yml and backlift.github.com/docs
+    -->
+
+    {{$ styles }}
+
+  </head>
+  <body>
+
+   
+  <div class="row">
+    <div class="container">
+      <div class="span12">
+
+        <div class="page-header">
+          <h1>Hello there!</h1>
+        </div>
+
+        {{$ if {$ page.liked } }}
+    
+          {{$ formsuccess }}
+          {{$ formerrors }}
+
+          <form action="/backlift/data/submissions" method="POST">
+
+            {{$ csrf }}
+
+            <label for="firstname">First name</label>
+            <input type="text" name="firstname" /><br />
+
+            <label for="lastname">Last name</label>
+            <input type="text" name="lastname" /><br />
+            
+            <label for="favoritecolor">Favorite color:</label>
+            <input type="text" name="favoritecolor" /><br />
+
+            <label for="email">Email:</label>
+            <input type="text" name="email" /><br />
+
+            <input class="btn btn-primary" type="submit" value="Send" />
+
+          </form>
+
+        {{$ endif }}
+
+        {{$ if not {$ page.liked } }}
+
+          <p>Before you can subscribe, you must like this page.</p>
+
+        {{$ endif }}
+
+
+      </div>
+    </div>
+  </div>
+
+  </body>
+</html>
